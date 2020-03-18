@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('interview-twitter-ui App', () => {
+describe('mini-twitter-ui App', () => {
   let page: AppPage;
 
   beforeEach(() => {
