@@ -8,9 +8,9 @@ describe('CreateTweetComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateTweetComponent ]
+      declarations: [CreateTweetComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

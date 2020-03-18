@@ -8,9 +8,9 @@ describe('TweetsViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TweetsViewComponent ]
+      declarations: [TweetsViewComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,5 +1,5 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {UserTweetsContainerComponent} from "./user-tweets-container.component";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { UserTweetsContainerComponent } from './user-tweets-container.component';
 
 
 describe('UserTweetsContainerComponent', () => {
