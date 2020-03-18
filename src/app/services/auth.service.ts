@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AuthService {
@@ -10,37 +10,37 @@ export class AuthService {
   }
 
   getAuthToken(): string {
-    const authToken = localStorage.getItem("token");
-    return authToken ? authToken : "";
+    const authToken = localStorage.getItem('token');
+    return authToken ? authToken : '';
   }
 
   setAuthToken(authToken: string) {
-    localStorage.setItem("token", authToken);
-  }
-
-  private clearAuthToken() {
-    localStorage.removeItem("token");
-  }
-
-  private clearCredentials() {
-    localStorage.removeItem("username");
+    localStorage.setItem('token', authToken);
   }
 
   generateAuthToken(username: string, password: string): string {
-    return btoa(username + ":" + password);
+    return btoa(username + ':' + password);
   }
 
   getCurrentUser(): string {
-    const username = localStorage.getItem("username");
+    const username = localStorage.getItem('username');
     return username ? username : null;
-  }
-
-  private storeUsername(username: string) {
-    localStorage.setItem("username", username);
   }
 
   logout() {
     this.clearAuthToken();
     this.clearCredentials();
+  }
+
+  private clearAuthToken() {
+    localStorage.removeItem('token');
+  }
+
+  private clearCredentials() {
+    localStorage.removeItem('username');
+  }
+
+  private storeUsername(username: string) {
+    localStorage.setItem('username', username);
   }
 }

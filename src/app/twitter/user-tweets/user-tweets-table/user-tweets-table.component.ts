@@ -1,5 +1,5 @@
-import {Component, Input} from '@angular/core';
-import {TweetModel} from "../../../models/tweet.model";
+import { Component, Input } from '@angular/core';
+import { TweetModel } from '../../../models/tweet.model';
 
 @Component({
   selector: 'app-user-tweets-table',

@@ -1,5 +1,5 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {UserTweetsTableComponent} from "./user-tweets-table.component";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { UserTweetsTableComponent } from './user-tweets-table.component';
 
 describe('UserTweetsTableComponent', () => {
   let component: UserTweetsTableComponent;

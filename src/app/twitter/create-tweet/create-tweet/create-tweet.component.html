@@ -3,8 +3,8 @@
     <form #f="ngForm" (ngSubmit)="onFormSubmit(f)">
       <div class="col-md-6 col-md-offset-3">
         <div class="col-md-8 form-group">
-          <input type="text" class="form-control" placeholder="What's happening?" #tweetContent="ngModel" ngModel
-                (focus)="onTweetContentFocus()"  name="tweetContent" required minlength="1" maxlength="1400"/>
+          <input #tweetContent="ngModel" (focus)="onTweetContentFocus()" class="form-control" maxlength="1400" minlength="1"
+                 name="tweetContent" ngModel placeholder="What's happening?" required type="text" />
         </div>
         <div class="col-md-4 form-group">
           <button [disabled]="isSubmitButtonDisabled(f)" class="btn btn-primary">Tweet</button>

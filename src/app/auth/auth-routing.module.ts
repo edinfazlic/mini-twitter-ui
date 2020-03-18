@@ -1,6 +1,6 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {LoginContainerComponent} from "./login-container/login-container.component";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { LoginContainerComponent } from './login-container/login-container.component';
 
 const routes: Routes = [
   {

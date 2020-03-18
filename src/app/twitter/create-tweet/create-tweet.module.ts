@@ -1,7 +1,7 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {CreateTweetComponent} from './create-tweet/create-tweet.component';
-import {FormsModule} from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CreateTweetComponent } from './create-tweet/create-tweet.component';
 
 @NgModule({
   imports: [

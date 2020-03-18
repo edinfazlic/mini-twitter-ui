@@ -1,9 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {TweetModel} from "../../../models/tweet.model";
-import {TweetService} from "../../../services/tweet/tweet.service";
-import {Observable} from "rxjs/Observable";
-import {AuthService} from "../../../services/auth.service";
-import {ActivatedRoute, Params} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { TweetModel } from '../../../models/tweet.model';
+import { TweetService } from '../../../services/tweet/tweet.service';
 
 @Component({
   selector: 'app-user-tweets-view',

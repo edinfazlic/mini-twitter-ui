@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {TweetModel} from "../../models/tweet.model";
-import {Observable} from "rxjs/Observable";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { TweetModel } from '../../models/tweet.model';
 
 const ENDPOINT_BASE = '/api/tweets';
 

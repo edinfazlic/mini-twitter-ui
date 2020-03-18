@@ -1,6 +1,6 @@
-import {ChangeDetectorRef, Component} from '@angular/core';
-import {TweetService} from '../../../services/tweet/tweet.service';
-import {NgForm} from '@angular/forms';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { TweetService } from '../../../services/tweet/tweet.service';
 
 @Component({
   selector: 'app-create-tweet',
@@ -30,14 +30,14 @@ export class CreateTweetComponent {
     }
   }
 
+  onTweetContentFocus() {
+    this.tweetSavedStatus = {fail: false, success: false};
+  }
+
   private handleTweetSave(form: NgForm, tweetSavedStatus: any) {
     this.tweetSavedStatus = tweetSavedStatus;
     form.resetForm();
     this.cd.detectChanges();
-  }
-
-  onTweetContentFocus() {
-    this.tweetSavedStatus = {fail: false, success: false};
   }
 
 }

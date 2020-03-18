@@ -1,10 +1,10 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {TweetsContainerComponent} from "./tweets-container/tweets-container.component";
-import {TweetsViewComponent} from './tweets-view/tweets-view.component';
-import {TweetsTableComponent} from './tweets-table/tweets-table.component';
-import {RouterModule} from "@angular/router";
-import {CreateTweetModule} from '../create-tweet/create-tweet.module';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { CreateTweetModule } from '../create-tweet/create-tweet.module';
+import { TweetsContainerComponent } from './tweets-container/tweets-container.component';
+import { TweetsTableComponent } from './tweets-table/tweets-table.component';
+import { TweetsViewComponent } from './tweets-view/tweets-view.component';
 
 @NgModule({
   imports: [
