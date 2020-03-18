@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
+import { Route } from './models/routes.enum';
 
 const routes: Routes = [
   {
@@ -8,7 +9,7 @@ const routes: Routes = [
     loadChildren: 'app/twitter/twitter.module#TwitterModule', canActivate: [AuthGuard]
   },
   {
-    path: 'login',
+    path: Route.LOGIN,
     loadChildren: 'app/auth/auth.module#AuthModule',
   },
 ];

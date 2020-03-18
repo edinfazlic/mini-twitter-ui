@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Constants } from '../models/constants';
 
 @Injectable()
 export class AuthService {
@@ -10,12 +11,12 @@ export class AuthService {
   }
 
   getAuthToken(): string {
-    const authToken = localStorage.getItem('token');
+    const authToken = localStorage.getItem(Constants.STORAGE_KEY_TOKEN);
     return authToken ? authToken : '';
   }
 
   setAuthToken(authToken: string) {
-    localStorage.setItem('token', authToken);
+    localStorage.setItem(Constants.STORAGE_KEY_TOKEN, authToken);
   }
 
   generateAuthToken(username: string, password: string): string {
@@ -23,7 +24,7 @@ export class AuthService {
   }
 
   getCurrentUser(): string {
-    const username = localStorage.getItem('username');
+    const username = localStorage.getItem(Constants.STORAGE_KEY_USERNAME);
     return username ? username : null;
   }
 
@@ -33,14 +34,14 @@ export class AuthService {
   }
 
   private clearAuthToken() {
-    localStorage.removeItem('token');
+    localStorage.removeItem(Constants.STORAGE_KEY_TOKEN);
   }
 
   private clearCredentials() {
-    localStorage.removeItem('username');
+    localStorage.removeItem(Constants.STORAGE_KEY_USERNAME);
   }
 
   private storeUsername(username: string) {
-    localStorage.setItem('username', username);
+    localStorage.setItem(Constants.STORAGE_KEY_USERNAME, username);
   }
 }

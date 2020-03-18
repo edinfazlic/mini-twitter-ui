@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Route } from '../../models/routes.enum';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -24,10 +25,10 @@ export class LoginComponent {
     }
   }
 
-  login() {
+  login(): void {
     this.loading = true;
     this.authService.login(this.model.username, this.model.password);
-    this.router.navigate(['/app/tweets']);
+    this.router.navigate([`/${Route.APP}/${Route.TWEETS}`]);
   }
 
   isFormSubmittedWithInvalidUsername(loginForm: NgForm): boolean {

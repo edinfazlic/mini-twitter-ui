@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/do';
+import { Route } from '../models/routes.enum';
 import { AuthService } from '../services/auth.service';
 
 @Injectable()
@@ -21,7 +22,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }, (err: any) => {
       if (err instanceof HttpErrorResponse && err.status === 401) {
         this.authService.logout();
-        this.router.navigate(['/login']);
+        this.router.navigate([`/${Route.LOGIN}`]);
       }
     });
   }

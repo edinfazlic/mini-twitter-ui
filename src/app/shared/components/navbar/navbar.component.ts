@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Route } from '../../../models/routes.enum';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
@@ -8,6 +9,9 @@ import { AuthService } from '../../../services/auth.service';
   preserveWhitespaces: false,
 })
 export class NavbarComponent {
+
+  Route = Route;
+
   constructor(private authService: AuthService) {
   }
 
