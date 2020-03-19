@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs/Observable';
+import { Logout } from '../../../auth/auth.action';
 import { AuthState } from '../../../auth/auth.state';
 import { Route } from '../../../models/routes.enum';
 import { FetchState } from '../../../store/fetch.state';
@@ -20,11 +21,15 @@ export class NavbarComponent {
 
   private currentUser: string;
 
-  constructor() {
+  constructor(private store: Store) {
     this.$currentUser.subscribe((user: string) => this.currentUser = user);
   }
 
   getCurrentUser(): string {
     return this.currentUser;
+  }
+
+  logout(): void {
+    this.store.dispatch(new Logout());
   }
 }
