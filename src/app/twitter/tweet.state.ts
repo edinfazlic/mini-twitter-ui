@@ -4,7 +4,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { TweetSaveStatusModel } from '../models/tweet-save-status.model';
 import { TweetModel } from '../models/tweet.model';
 import { TweetService } from '../services/tweet/tweet.service';
-import { ToggleLoading } from '../shared/fetch.action';
+import { ToggleLoading } from '../store/fetch.action';
 import { ClearTweetSavedStatus, CreateTweet, FetchAllTweets, FetchTweetsForUser } from './tweet.action';
 
 

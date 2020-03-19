@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { SharedModule } from '../shared/shared.module';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthGuard } from './auth.guard';
@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
     AuthRoutingModule,
     HttpClientModule,
     SharedModule,
+    NgxsStoragePluginModule.forRoot({key: 'auth'}),
   ],
   providers: [
     {
@@ -25,7 +26,6 @@ import { LoginComponent } from './login/login.component';
       multi: true,
     },
     AuthGuard,
-    AuthService,
   ],
   declarations: [
     LoginComponent,
