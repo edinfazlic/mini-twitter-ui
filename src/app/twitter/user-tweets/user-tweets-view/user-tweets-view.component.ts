@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs/Observable';
 import { Route } from '../../../models/routes.enum';
 import { TweetModel } from '../../../models/tweet.model';
-import { TweetService } from '../../../services/tweet/tweet.service';
+import { FetchTweetsForUser } from '../../tweet.action';
+import { TweetState } from '../../tweet.state';
 
 @Component({
   selector: 'app-user-tweets-view',
@@ -12,16 +14,18 @@ import { TweetService } from '../../../services/tweet/tweet.service';
 })
 export class UserTweetsViewComponent implements OnInit {
 
-  $tweets: Observable<TweetModel[]>;
-  userName: string;
+  @Select(TweetState.getUserTweets) $tweets: Observable<TweetModel[]>;
 
-  constructor(private tweetService: TweetService, private activatedRoute: ActivatedRoute) {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private store: Store,
+  ) {
   }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
-      this.userName = params[Route.PARAM_USERNAME];
-      this.$tweets = this.tweetService.fetchForUser(this.userName);
+      const userName = params[Route.PARAM_USERNAME];
+      this.store.dispatch(new FetchTweetsForUser(userName));
     });
   }
 

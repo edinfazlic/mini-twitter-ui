@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { NgxsModule } from '@ngxs/store';
 import { TweetService } from '../services/tweet/tweet.service';
 import { SharedModule } from '../shared/shared.module';
 import { MainComponent } from './main/main.component';
+import { TweetState } from './tweet.state';
 import { TwitterRoutingModule } from './twitter-routing.module';
 
 @NgModule({
@@ -10,6 +12,9 @@ import { TwitterRoutingModule } from './twitter-routing.module';
     CommonModule,
     SharedModule,
     TwitterRoutingModule,
+    NgxsModule.forRoot([
+      TweetState
+    ]),
   ],
   declarations: [
     MainComponent,
