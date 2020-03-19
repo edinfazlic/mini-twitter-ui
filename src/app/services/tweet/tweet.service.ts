@@ -16,11 +16,11 @@ export class TweetService {
     return this.http.get<TweetModel[]>(URL);
   }
 
-  fetchForUser(username: string) {
+  fetchForUser(username: string): Observable<TweetModel[]> {
     return this.http.get<TweetModel[]>(URL + '/' + username);
   }
 
-  create(tweetContent: string) {
+  create(tweetContent: string): Observable<TweetModel> {
     return this.http.post<TweetModel>(URL, tweetContent);
   }
 }

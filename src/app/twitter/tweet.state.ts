@@ -1,19 +1,25 @@
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
-import { tap } from 'rxjs/operators';
+import { of } from 'rxjs/observable/of';
+import { catchError, tap } from 'rxjs/operators';
+import { TweetSaveStatusModel } from '../models/tweet-save-status.model';
 import { TweetModel } from '../models/tweet.model';
 import { TweetService } from '../services/tweet/tweet.service';
 import { ToggleLoading } from '../shared/fetch.action';
-import { FetchTweetsForUser } from './tweet.action';
+import { ClearTweetSavedStatus, CreateTweet, FetchAllTweets, FetchTweetsForUser } from './tweet.action';
 
 
 export class TweetStateModel {
   userTweets: TweetModel[];
+  allTweets: TweetModel[];
+  tweetSaveStatus: TweetSaveStatusModel;
 }
 
 @State<TweetStateModel>({
   name: 'tweet',
   defaults: {
     userTweets: [],
+    allTweets: [],
+    tweetSaveStatus: {fail: false, success: false},
   },
 })
 
@@ -24,6 +30,16 @@ export class TweetState {
     return state.userTweets;
   }
 
+  @Selector()
+  static getAllTweets(state: TweetStateModel): TweetModel[] {
+    return state.allTweets;
+  }
+
+  @Selector()
+  static getTweetSaveStatus(state: TweetStateModel): TweetSaveStatusModel {
+    return state.tweetSaveStatus;
+  }
+
   constructor(
     private tweetService: TweetService,
     private store: Store,
@@ -31,7 +47,7 @@ export class TweetState {
   }
 
   @Action(FetchTweetsForUser)
-  fetch(context: StateContext<TweetStateModel>, action: FetchTweetsForUser): void {
+  fetchForUser(context: StateContext<TweetStateModel>, action: FetchTweetsForUser): void {
     this.store.dispatch(new ToggleLoading(true));
 
     this.tweetService.fetchForUser(action.payload).pipe(
@@ -44,5 +60,50 @@ export class TweetState {
         this.store.dispatch(new ToggleLoading(false));
       }),
     ).subscribe();
+  }
+
+  @Action(FetchAllTweets)
+  fetchAll(context: StateContext<TweetStateModel>, action: FetchAllTweets): void {
+    this.store.dispatch(new ToggleLoading(true));
+
+    this.tweetService.fetch().pipe(
+      tap((result: TweetModel[]) => {
+        context.patchState({
+          allTweets: result,
+        });
+      }),
+      tap(() => {
+        this.store.dispatch(new ToggleLoading(false));
+      }),
+    ).subscribe();
+  }
+
+  @Action(CreateTweet)
+  createTweet(context: StateContext<TweetStateModel>, action: CreateTweet): void {
+    this.store.dispatch(new ToggleLoading(true));
+
+    this.tweetService.create(action.payload).pipe(
+      tap((result: TweetModel) => {
+        context.patchState({
+          tweetSaveStatus: {fail: false, success: true},
+        });
+      }),
+      catchError((err) => {
+        context.patchState({
+          tweetSaveStatus: {fail: true, success: false},
+        });
+        return of([]);
+      }),
+      tap(() => {
+        this.store.dispatch(new ToggleLoading(false));
+      }),
+    ).subscribe();
+  }
+
+  @Action(ClearTweetSavedStatus)
+  clearTweetSavedStatus(context: StateContext<TweetStateModel>, action: ClearTweetSavedStatus): void {
+    context.patchState({
+      tweetSaveStatus: {fail: false, success: false},
+    });
   }
 }
