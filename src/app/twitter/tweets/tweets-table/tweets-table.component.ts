@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Route } from '../../../models/routes.enum';
 import { TweetModel } from '../../../models/tweet.model';
 
 @Component({
@@ -9,5 +10,7 @@ import { TweetModel } from '../../../models/tweet.model';
 export class TweetsTableComponent {
 
   @Input() tweets: TweetModel[];
+
+  Route = Route;
 
 }

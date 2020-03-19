@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginUserModel } from '../../models/login-user.model';
 import { Route } from '../../models/routes.enum';
 import { AuthService } from '../../services/auth.service';
 
@@ -11,7 +12,7 @@ import { AuthService } from '../../services/auth.service';
 })
 
 export class LoginComponent {
-  model: any = {username: '', password: ''};
+  model: LoginUserModel = {username: '', password: ''};
   loading = false;
   incorrectCredentialsError = false;
 
