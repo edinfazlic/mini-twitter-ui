@@ -1,16 +1,23 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+import { Select } from '@ngxs/store';
+import { Observable } from 'rxjs/Observable';
 import { Route } from '../models/routes.enum';
-import { AuthService } from '../services/auth.service';
+import { AuthState } from './auth.state';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private router: Router, private authService: AuthService) {
+  @Select(AuthState.getCurrentUser) $currentUser: Observable<string>;
+
+  private currentUser: string;
+
+  constructor(private router: Router) {
+    this.$currentUser.subscribe((user: string) => this.currentUser = user);
   }
 
   canActivate() {
-    if (this.authService.getCurrentUser()) {
+    if (this.currentUser) {
       // logged in so return true
       return true;
     }

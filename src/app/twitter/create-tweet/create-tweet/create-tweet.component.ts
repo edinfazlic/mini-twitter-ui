@@ -36,9 +36,6 @@ export class CreateTweetComponent {
   }
 
   private onTweetSaveStatusChange = (tweetSaveStatus: TweetSaveStatusModel) => {
-    if (!tweetSaveStatus) {
-      return;
-    }
     if (this.formElement) {
       this.formElement.resetForm();
     }

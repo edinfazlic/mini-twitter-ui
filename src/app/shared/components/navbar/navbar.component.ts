@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs/Observable';
+import { AuthState } from '../../../auth/auth.state';
 import { Route } from '../../../models/routes.enum';
-import { AuthService } from '../../../services/auth.service';
-import { FetchState } from '../../fetch.state';
+import { FetchState } from '../../../store/fetch.state';
 
 @Component({
   selector: 'app-navbar',
@@ -16,11 +16,15 @@ export class NavbarComponent {
   Route = Route;
 
   @Select(FetchState.isLoading) $loading: Observable<boolean>;
+  @Select(AuthState.getCurrentUser) $currentUser: Observable<string>;
 
-  constructor(private authService: AuthService) {
+  private currentUser: string;
+
+  constructor() {
+    this.$currentUser.subscribe((user: string) => this.currentUser = user);
   }
 
   getCurrentUser(): string {
-    return this.authService.getCurrentUser();
+    return this.currentUser;
   }
 }

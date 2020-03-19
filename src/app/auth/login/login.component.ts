@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { LoginUserModel } from '../../models/login-user.model';
-import { Route } from '../../models/routes.enum';
-import { AuthService } from '../../services/auth.service';
+import { Login } from '../auth.action';
 
 @Component({
   moduleId: module.id,
@@ -13,11 +12,9 @@ import { AuthService } from '../../services/auth.service';
 
 export class LoginComponent {
   model: LoginUserModel = {username: '', password: ''};
-  loading = false;
-  incorrectCredentialsError = false;
+  incorrectCredentialsError = false; // todo: value is never set
 
-  constructor(private router: Router,
-              private authService: AuthService) {
+  constructor(private store: Store) {
   }
 
   onSubmit(loginForm: NgForm): void {
@@ -27,9 +24,7 @@ export class LoginComponent {
   }
 
   login(): void {
-    this.loading = true;
-    this.authService.login(this.model.username, this.model.password);
-    this.router.navigate([`/${Route.APP}/${Route.TWEETS}`]);
+    this.store.dispatch(new Login(this.model));
   }
 
   isFormSubmittedWithInvalidUsername(loginForm: NgForm): boolean {

@@ -12,8 +12,8 @@ import { TwitterRoutingModule } from './twitter-routing.module';
     CommonModule,
     SharedModule,
     TwitterRoutingModule,
-    NgxsModule.forRoot([
-      TweetState
+    NgxsModule.forFeature([
+      TweetState,
     ]),
   ],
   declarations: [
