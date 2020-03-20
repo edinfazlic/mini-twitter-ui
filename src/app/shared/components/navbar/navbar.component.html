@@ -8,9 +8,8 @@
         <li routerLinkActive="active"><a routerLink="{{Route.TWEETS}}/{{getCurrentUser()}}">My tweets</a></li>
         <li routerLinkActive="active"><a routerLink="{{Route.TWEETS}}">Tweets</a></li>
         <li><a href="" (click)="logout()">Logout</a></li>
-        <li *ngIf="$loading | async"><a>Loading...</a></li>
+        <li><app-spinner *ngIf="$loading | async"></app-spinner></li>
       </ul>
     </div>
   </div>
 </nav>
-
