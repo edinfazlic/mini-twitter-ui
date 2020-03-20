@@ -1,0 +1,42 @@
+﻿<div class="col-md-6 col-md-offset-3">
+  <h2>Registration</h2>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" name="form" novalidate>
+    <div class="form-group">
+      <label for="firstName">First name</label>
+      <input #firstName="ngModel" [(ngModel)]="model.firstName" class="form-control" id="firstName" minlength="1" name="firstName"
+             required
+             type="text" />
+      <div *ngIf="isFormSubmittedWithInvalidName(f, 'firstName')" class="help-block">First name is required</div>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last name</label>
+      <input #lastName="ngModel" [(ngModel)]="model.lastName" class="form-control" id="lastName" name="lastName"
+             type="text" />
+    </div>
+    <div class="form-group">
+      <label for="lastName">Username</label>
+      <input #username="ngModel" [(ngModel)]="model.username" class="form-control" id="username" minlength="1" name="username"
+             required
+             type="text" />
+      <div *ngIf="isFormSubmittedWithInvalidName(f, 'username')" class="help-block">Username is required</div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input #pass="ngModel" [(ngModel)]="model.password" class="form-control" id="password" minlength="1"
+             name="password" required
+             type="password" />
+      <div *ngIf="isFormSubmittedWithInvalidPassword(f)" class="help-block">Password is required</div>
+    </div>
+    <div class="form-group">
+      <label for="password">Confirm Password</label>
+      <input #pass="ngModel" [(ngModel)]="confirmPassword" class="form-control" id="confirmPassword" minlength="1"
+             name="confirmPassword" required
+             type="password" />
+      <div *ngIf="isFormSubmittedWithInvalidConfirmPassword(f)" class="help-block">Passwords are not equal</div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary">Register</button>
+      <a routerLink="/{{Route.LOGIN}}" class="pull-right">Login</a>
+    </div>
+  </form>
+</div>

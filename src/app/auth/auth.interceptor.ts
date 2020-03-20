@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import 'rxjs/add/operator/do';
 import { Observable } from 'rxjs/Observable';
+import { Route } from '../models/routes.enum';
 import { Logout } from './auth.action';
 import { AuthState } from './auth.state';
 
@@ -18,12 +19,14 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    req = req.clone({
-      setHeaders: {
-        'X-Requested-With': 'XMLHttpRequest',
-        'Authorization': 'Basic ' + this.authToken,
-      }
-    });
+    if (!req.url.endsWith('/' + Route.SIGNUP)) {
+      req = req.clone({
+        setHeaders: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'Authorization': 'Basic ' + this.authToken,
+        }
+      });
+    }
     return next.handle(req).do((event: HttpEvent<any>) => {
     }, (err: any) => {
       if (err instanceof HttpErrorResponse && err.status === 401) {

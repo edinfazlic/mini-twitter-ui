@@ -1,8 +1,11 @@
 import { Router } from '@angular/router';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { tap } from 'rxjs/operators';
 import { LoginUserModel } from '../models/login-user.model';
 import { Route } from '../models/routes.enum';
-import { Login, Logout } from './auth.action';
+import { UserModel } from '../models/user.model';
+import { AuthService } from '../services/auth.service';
+import { Login, Logout, Register } from './auth.action';
 
 
 export class AuthStateModel {
@@ -30,7 +33,10 @@ export class AuthState {
     return state.username;
   }
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    ) {
   }
 
   @Action(Login)
@@ -52,6 +58,16 @@ export class AuthState {
     });
 
     this.router.navigate([`/${Route.LOGIN}`]);
+  }
+
+  @Action(Register)
+  register(context: StateContext<AuthStateModel>, action: Register): void {
+    this.authService.registerUser(action.payload).pipe(
+      tap((result: UserModel) => {
+        this.router.navigate([`/${Route.LOGIN}`]);
+      }),
+    ).subscribe();
+
   }
 
   private generateAuthToken(userModel: LoginUserModel): string {
