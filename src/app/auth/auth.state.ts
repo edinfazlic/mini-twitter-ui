@@ -67,7 +67,6 @@ export class AuthState {
         this.router.navigate([`/${Route.LOGIN}`]);
       }),
     ).subscribe();
-
   }
 
   private generateAuthToken(userModel: LoginUserModel): string {
