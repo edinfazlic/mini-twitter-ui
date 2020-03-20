@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Store } from '@ngxs/store';
 import { LoginUserModel } from '../../models/login-user.model';
+import { Route } from '../../models/routes.enum';
 import { Login } from '../auth.action';
 
 @Component({
@@ -13,6 +14,8 @@ import { Login } from '../auth.action';
 export class LoginComponent {
   model: LoginUserModel = {username: '', password: ''};
   incorrectCredentialsError = false; // todo: value is never set
+
+  Route = Route;
 
   constructor(private store: Store) {
   }
