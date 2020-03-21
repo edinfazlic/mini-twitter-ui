@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { ApiConfig } from '../../configs/api-config';
 import { TweetModel } from '../../models/tweet.model';
 
-const URL = `${ApiConfig.API_URL}/tweets`;
+const URL = `${ApiConfig.API_URL}/tweet`;
 
 @Injectable()
 export class TweetService {
