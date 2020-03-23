@@ -23,4 +23,9 @@ export class UserService {
       map((result: UserModel[]) => result.map(usr => new FormattedUserModel(usr)))
     );
   }
+
+  followUser(username: string): Observable<void> {
+    return this.http.post<void>(URL + '/follow/' + username, {});
+  }
+
 }

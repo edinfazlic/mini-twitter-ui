@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class UserOverviewBoxComponent {
 
-  @Input() key: number;
+  @Input() key: number | string;
   @Input() label: string;
 
 }

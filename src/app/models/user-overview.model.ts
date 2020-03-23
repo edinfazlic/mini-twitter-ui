@@ -1,5 +1,7 @@
 export interface UserOverviewModel {
   tweets: number;
-  followers: number;
-  following: number;
+  totalFollowers: number;
+  totalFollowing: number;
+  follower: boolean;
+  following: boolean;
 }
