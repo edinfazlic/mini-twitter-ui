@@ -1,5 +1,11 @@
 <div class="row overview-container">
-  <app-user-overview-box [key]="userOverview.tweets" [label]="'Tweets'"></app-user-overview-box>
-  <app-user-overview-box [key]="userOverview.followers" [label]="'Followers'"></app-user-overview-box>
-  <app-user-overview-box [key]="userOverview.following" [label]="'Following'"></app-user-overview-box>
+  <app-user-overview-box *ngIf="(($overviewUser | async) === ($currentUser | async)); else otherUser"
+                         [key]="$currentUser | async" [label]="'hi!'"></app-user-overview-box>
+  <ng-template #otherUser>
+    <app-follow-action-box [follower]="($userOverview | async).follower"
+                           [following]="($userOverview | async).following"></app-follow-action-box>
+  </ng-template>
+  <app-user-overview-box [key]="($userOverview | async).tweets" [label]="'Tweets'"></app-user-overview-box>
+  <app-user-overview-box [key]="($userOverview | async).totalFollowers" [label]="'Followers'"></app-user-overview-box>
+  <app-user-overview-box [key]="($userOverview | async).totalFollowing" [label]="'Following'"></app-user-overview-box>
 </div>

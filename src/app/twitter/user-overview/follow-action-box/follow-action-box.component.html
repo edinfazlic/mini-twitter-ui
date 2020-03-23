@@ -1,0 +1,6 @@
+<div class="col-xs-6 col-md-3 text-center follow-action-container">
+  <div *ngIf="following; else followButton">{{getFollowingInfoLabel()}}</div>
+  <ng-template #followButton>
+    <button (click)="follow()" class="btn btn-primary">{{getButtonLabel()}}</button>
+  </ng-template>
+</div>
