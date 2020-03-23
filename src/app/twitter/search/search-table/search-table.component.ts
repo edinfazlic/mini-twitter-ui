@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs/Observable';
-import { FollowInfoUserModel } from '../../../models/follow-info-user.model';
 import { Route } from '../../../models/routes.enum';
+import { UserModel } from '../../../models/user.model';
 import { SearchState } from '../search.state';
 
 @Component({
@@ -12,7 +12,7 @@ import { SearchState } from '../search.state';
 })
 export class SearchTableComponent {
 
-  @Select(SearchState.getUsers) users$: Observable<FollowInfoUserModel[]>;
+  @Select(SearchState.getUsers) users$: Observable<UserModel[]>;
 
   Route = Route;
 

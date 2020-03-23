@@ -1,18 +1,12 @@
 <table class="table" id="users-table">
   <thead>
   <tr>
-    <th>Username</th>
-    <th>First name</th>
-    <th>Last name</th>
     <th></th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let user of users$ | async" [ngClass]="{'follower': user.follower}">
-    <td><a routerLink="/{{Route.APP}}/{{Route.TWEETS}}/{{user.username}}">({{user.username}})</a></td>
-    <td>{{user.firstName}}</td>
-    <td>{{user.lastName}}</td>
-    <td>{{!user.following ? 'Follow' : ''}}</td>
+  <tr *ngFor="let user of users$ | async">
+    <td><a routerLink="/{{Route.APP}}/{{Route.TWEETS}}/{{user.username}}">{{user.getFormattedName()}}</a></td>
   </tr>
   </tbody>
 </table>

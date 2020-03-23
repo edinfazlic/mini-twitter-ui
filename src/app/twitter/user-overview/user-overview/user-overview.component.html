@@ -1,6 +1,5 @@
 <div class="row overview-container">
-  <div *ngFor="let highlight of highlights" class="col-xs-12 col-md-4 text-center">
-    <div class="text-highlight">{{highlight.key}}</div>
-    <div>{{highlight.label}}</div>
-  </div>
+  <app-user-overview-box [key]="userOverview.tweets" [label]="'Tweets'"></app-user-overview-box>
+  <app-user-overview-box [key]="userOverview.followers" [label]="'Followers'"></app-user-overview-box>
+  <app-user-overview-box [key]="userOverview.following" [label]="'Following'"></app-user-overview-box>
 </div>

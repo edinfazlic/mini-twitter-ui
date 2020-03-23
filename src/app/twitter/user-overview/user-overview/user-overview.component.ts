@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { UserHighlightModel } from '../../../models/user-highlight.model';
+import { UserOverviewModel } from '../../../models/user-overview.model';
 
 @Component({
   selector: 'app-user-overview',
@@ -8,7 +8,6 @@ import { UserHighlightModel } from '../../../models/user-highlight.model';
 })
 export class UserOverviewComponent {
 
-  @Input()
-  highlights: UserHighlightModel[];
+  @Input() userOverview: UserOverviewModel;
 
 }
