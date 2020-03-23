@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operators';
 import { ApiConfig } from '../../configs/api-config';
-import { FollowInfoUserModel } from '../../models/follow-info-user.model';
+import { FormattedUserModel } from '../../models/formatted-user.model';
+import { UserModel } from '../../models/user.model';
 
 const URL = `${ApiConfig.API_URL}/user`;
 
@@ -12,11 +14,13 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  searchUsers(searchString: string): Observable<FollowInfoUserModel[]> {
-    return this.http.get<FollowInfoUserModel[]>(URL, {
+  searchUsers(searchString: string): Observable<FormattedUserModel[]> {
+    return this.http.get<UserModel[]>(URL, {
       params: {
         searchString
       }
-    });
+    }).pipe(
+      map((result: UserModel[]) => result.map(usr => new FormattedUserModel(usr)))
+    );
   }
 }

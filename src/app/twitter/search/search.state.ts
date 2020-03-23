@@ -1,18 +1,21 @@
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
-import { FollowInfoUserModel } from '../../models/follow-info-user.model';
+import { FormattedUserModel } from '../../models/formatted-user.model';
+import { UserModel } from '../../models/user.model';
 import { UserService } from '../../services/user/user.service';
 import { ToggleLoading } from '../../store/fetch.action';
 import { SearchUsers } from './search.action';
 
 
 export class SearchStateModel {
-  users: FollowInfoUserModel[];
+  searchString: string;
+  users: UserModel[];
 }
 
 @State<SearchStateModel>({
   name: 'search',
   defaults: {
+    searchString: '',
     users: [],
   },
 })
@@ -20,8 +23,13 @@ export class SearchStateModel {
 export class SearchState {
 
   @Selector()
-  static getUsers(state: SearchStateModel): FollowInfoUserModel[] {
+  static getUsers(state: SearchStateModel): UserModel[] {
     return state.users;
+  }
+
+  @Selector()
+  static getSearchString(state: SearchStateModel): string {
+    return state.searchString;
   }
 
   constructor(
@@ -32,10 +40,13 @@ export class SearchState {
 
   @Action(SearchUsers)
   fetchForUser(context: StateContext<SearchStateModel>, action: SearchUsers): void {
+    context.patchState({
+      searchString: action.payload,
+    });
     this.store.dispatch(new ToggleLoading(true));
 
     this.userService.searchUsers(action.payload).pipe(
-      tap((result: FollowInfoUserModel[]) => {
+      tap((result: FormattedUserModel[]) => {
         context.patchState({
           users: result,
         });

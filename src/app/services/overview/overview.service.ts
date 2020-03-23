@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ApiConfig } from '../../configs/api-config';
-import { UserOverviewModel } from '../../models/user-overview.mode';
+import { UserOverviewModel } from '../../models/user-overview.model';
 
 const URL = `${ApiConfig.API_URL}/overview`;
 

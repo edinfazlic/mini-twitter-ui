@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgxsModule } from '@ngxs/store';
 import { OverviewService } from '../../services/overview/overview.service';
 import { OverviewState } from './overview.state';
+import { UserOverviewBoxComponent } from './user-overview-box/user-overview-box.component';
 import { UserOverviewComponent } from './user-overview/user-overview.component';
 
 @NgModule({
@@ -12,7 +13,10 @@ import { UserOverviewComponent } from './user-overview/user-overview.component';
       OverviewState,
     ]),
   ],
-  declarations: [UserOverviewComponent],
+  declarations: [
+    UserOverviewComponent,
+    UserOverviewBoxComponent,
+  ],
   providers: [OverviewService],
   exports: [UserOverviewComponent]
 })

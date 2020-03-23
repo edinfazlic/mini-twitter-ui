@@ -12,7 +12,7 @@ import { Register } from '../auth.action';
 })
 
 export class SignupComponent {
-  model: AuthUserModel = {password: '', id: '', username: '', firstName: '', lastName: ''};
+  model: AuthUserModel = {} as AuthUserModel;
 
   confirmPassword: string;
 
