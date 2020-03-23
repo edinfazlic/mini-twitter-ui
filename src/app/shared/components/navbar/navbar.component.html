@@ -5,11 +5,13 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li routerLinkActive="active"><a routerLink="{{Route.TWEETS}}/{{getCurrentUser()}}">My tweets</a></li>
+        <li routerLinkActive="active"><a routerLink="{{Route.TWEETS}}/{{getCurrentUser()}}">My profile</a></li>
         <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="{{Route.TWEETS}}">Tweets</a></li>
         <li routerLinkActive="active"><a routerLink="{{Route.SEARCH}}">Explore</a></li>
-        <li><a href="" (click)="logout()">Logout</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
         <li><app-spinner *ngIf="$loading | async"></app-spinner></li>
+        <li><a href="" (click)="logout()">Logout</a></li>
       </ul>
     </div>
   </div>
