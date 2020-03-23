@@ -4,6 +4,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs/Observable';
 import { FetchState } from '../../../store/fetch.state';
 import { SearchUsers } from '../search.action';
+import { SearchState } from '../search.state';
 
 @Component({
   selector: 'app-search',
@@ -13,6 +14,7 @@ import { SearchUsers } from '../search.action';
 export class SearchComponent {
 
   @Select(FetchState.isLoading) $isLoading: Observable<boolean>;
+  @Select(SearchState.getSearchString) $searchString: Observable<string>;
 
   constructor(private store: Store) {
   }

@@ -1,7 +1,6 @@
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { of } from 'rxjs/observable/of';
 import { catchError, tap } from 'rxjs/operators';
-import { FormattedUserModel } from '../models/formatted-user.model';
 import { TweetSaveStatusModel } from '../models/tweet-save-status.model';
 import { TweetModel } from '../models/tweet.model';
 import { TweetService } from '../services/tweet/tweet.service';
@@ -47,17 +46,12 @@ export class TweetState {
   ) {
   }
 
-  private static formatUser(tweet: TweetModel): void {
-    tweet.author = new FormattedUserModel(tweet.author);
-  }
-
   @Action(FetchTweetsForUser)
   fetchForUser(context: StateContext<TweetStateModel>, action: FetchTweetsForUser): void {
     this.store.dispatch(new ToggleLoading(true));
 
     this.tweetService.fetchForUser(action.payload).pipe(
       tap((result: TweetModel[]) => {
-        result.forEach(TweetState.formatUser);
         context.patchState({
           userTweets: result,
         });
@@ -74,7 +68,6 @@ export class TweetState {
 
     this.tweetService.fetch().pipe(
       tap((result: TweetModel[]) => {
-        result.forEach(TweetState.formatUser);
         context.patchState({
           allTweets: result,
         });

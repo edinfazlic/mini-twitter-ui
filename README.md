@@ -35,26 +35,26 @@ Application showcases knowledge of:
   - Reactive programming with RxJS library
     - Passing Observable as a parameter, variable, object
     - Immediately subscribing to Observables
-    - Pipe usage for multiple async calls
+    - Pipe usage for multiple async calls (with tap, map)
   - Typescript
     - Fat-arrow functions (preserving "this" context and making code more readable with meaningful names)
     - Partial
   - General
     - REST calls
-      - GET with path variables
+      - GET with path variables and request parameters
       - POST with body 
     - Data structures
       - Array (for tweets management), upon which JS array methods were used (map())
-    - Bootstrap (responsiveness)
+    - Bootstrap (UI responsiveness)
     - Having git commit messages readable
   - Concepts
     - Separation of concerns
     - "N-tier architecture"
       - Display and styling only, without any logic (HTML template and CSS) - only communicates with Controllers
       - Component specific logic (Controllers) - only communicates with States through Actions and Selectors
-      - State containers and DTO to model logic (State) - expose Selectors, implement Actions, and invoke Services
+      - State containers (States) - expose Selectors, implement Actions, and invoke Services
       - Invoking outside of the application (Services) - only communicated by States
-    - Linting (with TSlint - strict but not AirBnB rules)
+    - Linting (with TSlint - strict, but not AirBnB rules)
     - Refactoring (Introducing NGXS...)
     - Prototyping (Fast completion without full functionality displaying test concept, process or design)
   - Operations

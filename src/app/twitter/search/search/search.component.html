@@ -3,8 +3,10 @@
     <form #f="ngForm" (ngSubmit)="onFormSubmit(f)">
       <div class="col-md-6 col-md-offset-3">
         <div class="col-md-8 form-group">
-          <input #searchContent="ngModel" class="form-control" minlength="1"
-                 name="searchContent" ngModel placeholder="Search for users..." required type="text" />
+          <input ngModel="{{$searchString | async}}" name="searchContent"
+                 minlength="1" required type="text"
+                 placeholder="Search for users..."
+                 class="form-control" />
         </div>
         <div class="col-md-4 form-group">
           <button [disabled]="f.invalid || ($isLoading | async)" class="btn btn-primary">Search</button>

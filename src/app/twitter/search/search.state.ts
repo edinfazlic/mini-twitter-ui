@@ -8,12 +8,14 @@ import { SearchUsers } from './search.action';
 
 
 export class SearchStateModel {
+  searchString: string;
   users: UserModel[];
 }
 
 @State<SearchStateModel>({
   name: 'search',
   defaults: {
+    searchString: '',
     users: [],
   },
 })
@@ -25,6 +27,11 @@ export class SearchState {
     return state.users;
   }
 
+  @Selector()
+  static getSearchString(state: SearchStateModel): string {
+    return state.searchString;
+  }
+
   constructor(
     private userService: UserService,
     private store: Store,
@@ -33,12 +40,15 @@ export class SearchState {
 
   @Action(SearchUsers)
   fetchForUser(context: StateContext<SearchStateModel>, action: SearchUsers): void {
+    context.patchState({
+      searchString: action.payload,
+    });
     this.store.dispatch(new ToggleLoading(true));
 
     this.userService.searchUsers(action.payload).pipe(
-      tap((result: UserModel[]) => {
+      tap((result: FormattedUserModel[]) => {
         context.patchState({
-          users: result.map(usr => new FormattedUserModel(usr)),
+          users: result,
         });
       }),
       tap(() => {
