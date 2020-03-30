@@ -4,15 +4,28 @@ This application is mini imitation of Twitter. Users are able to register, login
 
 ## Used
 
-Angular, version 5
-NGXS, for state management
-Bootstrap, UI responsiveness
-TSlint (plus codelyzer), for static code analysis
-GitHub, for review
+- Angular, version 5
+- NGXS, for state management
+- Bootstrap, UI responsiveness
+- TSlint (plus codelyzer), for static code analysis
+- GitHub, for review
 
 ## Functionalities
 
-.
+Arriving to the application, first what users are going to see is login screen. To have access to use the application, it's necessary to signup/register. There is a link to registration page from login page. Registration is simple form with few validations.
+
+After successful registration it's possible to log in immediatelly.
+In the application, users can search for other people by their first name, last name or username, all through a single field in the Exploration page. After finding person of interest, it can be navigated to that persons profile.
+
+In that persons profile page, user can Follow that person. By doing so, user will see that persons tweets, along with other tweets of other people user follows, on Tweets page.
+In case where user already follows that person, user can see corresponding info. User can also see appropriate message when followed by that person, or if they follow each other.
+Next to that info, user can see how many tweets person has created, how many followers that person has, or how many other people are following that person.
+Underneath all those info are the actual tweets that person created.
+
+User can also create own tweets, and that can be accomplished from any page, except from Exploration page.
+User can also navigate to own profile and see all the same information like when viewing other persons profile page, except the following information, of course. Instead of that, user will see personalized greeting.
+
+Each waiting of data is accompanied with a spinner, next to the Logout button in the navigation bar. Other than Logout, other mentioned important pages can be found in the navigation bar as well, like: Exploration (search for other people), Tweets (see tweets of people I follow), My Tweets (my profile page).
 
 ## Meta info
 Application showcases knowledge of:
