@@ -75,5 +75,5 @@ Application showcases knowledge of:
     - Deploying application (on Netlify)
 
 ## Development server
-1. Have server api ([found here](https://github.com/edinfazlic/location-api)) running. 
+1. Have server api ([found here](https://github.com/edinfazlic/mini-twitter-rest)) running. 
 1. Run `ng serve` or `npm start` and navigate to `http://localhost:4200/`. 
